@@ -1,0 +1,111 @@
+#!/usr/bin/python3
+# -*- coding: UTF-8 -*-
+from PIL import Image
+from tinyscript import *
+
+
+__author__    = "Alexandre D'Hondt"
+__version__   = "1.1"
+__copyright__ = ("A. D'Hondt", 2020)
+__license__   = "gpl-3.0"
+__examples__  = ["extract test.png -z", "bruteforce test.png -c"]
+__docformat__ = "md"
+__doc__ = """
+*StegoPVD* allows to apply steganography based on PVD (Pixel Value Differencing) in order to retrieve hidden data from an image.
+"""
+
+
+BANNER_FONT       = "standard"
+BANNER_STYLE      = {'fgcolor': "lolcat"}
+SCRIPTNAME_FORMAT = "none"
+
+
+class PVD(object):
+    def __init__(self, image, secret=None):
+        self.__image = image
+        self.__secret = secret
+        self.__obj = Image.open(image).convert('RGB')
+        logger.debug("Image size: {}x{}".format(*self.__obj.size))
+    
+    def bruteforce(self, channels=False, nchars=16):
+        for ch in (ts.bruteforce(3, "RGB", repeat=False) if channels else \
+                   ["RGB"]):
+            for zigzag in [True, False]:
+                self.extract(ch, zigzag)
+                for s in ts.strings(self.data, nchars):
+                    logger.info(s)
+                    if self.__secret:
+                        self.write(content=s)
+    
+    def extract(self, channels="B", zigzag=True):
+        logger.debug("Channels {}, zigzag {}".format(channels, zigzag))
+        i = self.__obj
+        w, h = i.size
+        data = ""
+        for y in range(h):
+            for x in range(1, w, 2):
+                if zigzag and (y % 2 == 1):
+                    x = -x % w
+                pixel = {k: v for k, v in zip("RGB", i.getpixel((x, y)))}
+                prev_pixel = {k: v for k, v in zip("RGB", i.getpixel((x-1, y)))}
+                for c in channels:
+                    d = int(abs(pixel[c] - prev_pixel[c]))
+                    if 0 <= d <= 7:
+                        b, lower = 3, 0
+                    elif 8 <= d <= 15:
+                        b, lower = 3, 8
+                    elif 16 <= d <= 31:
+                        b, lower = 4, 16
+                    elif 32 <= d <= 63:
+                        b, lower = 5, 32
+                    elif 64 <= d <= 127:
+                        b, lower = 6, 64
+                    elif 128 <= d <= 255:
+                        b, lower = 7, 128
+                    data += bin(d - lower)[2:].zfill(b)
+        self.data = ts.bin2str(data)
+
+    def hide(self, data):
+        bin_data = ts.str2bin(data)
+        #TODO: implement hiding data
+        bin_len = ts.int2bin(len(bin_data))
+        return self
+
+    def write(self, filename=None, content=None):
+        filename = self.__secret or filename
+        if filename is None:
+            filename = os.path.basename(self.__image)
+            filename, _ = os.path.splitext(filename)
+            filename = "{}-secret.txt".format(filename)
+        with open(filename, 'ab') as f:
+            f.write(b(content or self.data))
+        return self
+
+
+if __name__ == "__main__":
+    parser.add_argument("-w", "--write", help="write data to a file")
+    subparsers = parser.add_subparsers(help="commands", dest="command")
+    extract = subparsers.add_parser('extract',
+                                    help="manually extract hidden data")
+    bruteforce = subparsers.add_parser('bruteforce', help="bruteforce "
+                                       "parameters for extracting hidden data")
+    extract.add_argument("image", type=ts.file_exists, help="image path")
+    extract.add_argument("-c", "--channels", default="RGB",
+                         help="channels to be considered")
+    extract.add_argument("-z", "--zigzag", action="store_true",
+                         help="apply Zig-Zag Traversing Scheme (ZZTS)")
+    bruteforce.add_argument("image", type=ts.file_exists, help="image path")
+    bruteforce.add_argument("-c", "--channels", action="store_true",
+                            help="bruteforce the color channels",
+                            note="if false, RGB are considered")
+    bruteforce.add_argument("-n", "--nchars", type=ts.pos_int, default=16,
+                            help="minimal length for readable strings")
+    initialize(noargs_action="demo")
+    p = PVD(args.image, args.write)
+    if args.command == "bruteforce":
+        p.bruteforce(args.channels)
+    elif args.command == "extract":
+        p.extract()
+        logger.info("Hidden data:\n" + p.data)
+        if args.write:
+            p.write()
