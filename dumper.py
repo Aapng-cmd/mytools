@@ -9,7 +9,7 @@ from fake_useragent import UserAgent
 
 
 def search_links(page):
-    links = list(filter((lambda x: ("href=\"" in x or "src=\"" in x) and x[0] != "#" and x != "/" and "android://" not in x and "mailto" not in x and "tel" not in x and "+" not in x and "skype" not in x and "twiter" not in x and not (".ru" in x or ".us" in x or ".en" in x)), re.split("[\n<>]", page.text)))
+    links = list(filter((lambda x: ("href=\"" in x or "src=\"" in x) and x[0] != "#" and x != "/" and "android://" not in x and "mailto" not in x and "tel" not in x and "+" not in x and "skype" not in x and "twiter" not in x and not (".ru" in x or ".us" in x or ".en" in x) and "javascript:void(0)" not in x), re.split("[\n<>]", page.text)))
     
     for i, el in enumerate(links):
         el = re.split("['\" ?]", el)
@@ -33,13 +33,13 @@ def filter_links(links):
 
 def dumping(links: list, url, directory="/home/kali/tmp/site", file_links=set()):
     os.mkdir(directory) if not os.path.exists(directory) else None
-    subprocess.getoutput(f"wget --header='User-Agent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11' {url} -O {directory}/index.html")
+    subprocess.getoutput(f"wget --header='User-Agent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11' {url} -O {directory}/index.php")
     
     if isinstance(links, set): links = list(links)
     if len(links) == 0: return
     for link in sorted(links):
-        if link[0] == "/": link = link[1:]
-        path = (link.split('/') if "/" in link else [link])
+        if link[0] != "/": link = "/" + link
+        path = (link.split('/')[1:] if "/" in link else [link])
         cur_path = ""
         
         print(link, path)
