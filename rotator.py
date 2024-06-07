@@ -43,11 +43,11 @@ def get_proxies():
 while True:
     print("New proxy incoming")
     proxies = get_proxies()
-    with open("/etc/proxychains4.conf.bak", "r", encoding="utf-8") as file:
-        backup = file.read()
-    with open("/etc/proxychains4.conf", "w") as file:
-        file.write(backup)
-    with open("/etc/proxychains4.conf", "a") as file:
-        file.write(proxies)
-        print(proxies)
+    # with open("/etc/proxychains4.conf.bak", "r", encoding="utf-8") as file:
+    #     backup = file.read()
+    # with open("/etc/proxychains4.conf", "w") as file:
+    #     file.write(backup)
+    # with open("/etc/proxychains4.conf", "a") as file:
+    #     file.write(proxies)
+    print(proxies)
     time.sleep(60 * 2)

@@ -1,0 +1,13 @@
+! https://geo.gymn116.ru # wp 6.3.1 | User=geo116
+http://www.fml366.org # drupal
+! https://sc261.ru # wp 6.5.3 | User=nilov,bychkov, Vuln=https://sc261.ru/wp-content/themes/showtime/scripts/timthumb.php?src= : RCE/LFI
+http://www.spbschool622.ru # joomla! 3.9.0
+! http://new.gymn470.ru # wp 5.8.9 | User=admin,gordeeva
+http://school246.ru # joomla! 3.10.22
+https://525school.ru # joomla! 1.5.2
+https://nwedu.ru # wp 6.5.3
+https://l126.ru/ # wp 6.4.4 | User=admin,leva,koltsova,ivanovvv
+!! http://school564.ru # livestreet | enabled register/login
+https://www.shkola197.com # WIX Website Builder
+https://gym168.ru # wp 6.5.3 | User=admin
+https://diplomatschool.ru/ # wp 6.5.3 | User=admin-2

