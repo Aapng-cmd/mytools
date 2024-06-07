@@ -48,7 +48,6 @@ for el in r.text.split("\n"):
 
 
 for ip in ips:
-	ip = "212.85.99.167"
 	s = ""
 	s += ("-------===================-----------" + "\n")
 	s += (ip + "\n")
@@ -116,6 +115,5 @@ for ip in ips:
 	print(s)
 	
 	f.write(s)
-	break
 
 f.close()
