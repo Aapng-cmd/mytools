@@ -11,3 +11,27 @@ https://l126.ru/ # wp 6.4.4 | User=admin,leva,koltsova,ivanovvv
 https://www.shkola197.com # WIX Website Builder
 https://gym168.ru # wp 6.5.3 | User=admin
 https://diplomatschool.ru/ # wp 6.5.3 | User=admin-2
+https://tomic.pl/ # wp | multiple xss vuln, User=serek5566
+http://magiaporanka.pl/ # wp | User=admin, Marek Admin, Marek Pluta, marekp
+http://school72.ru/ # wp 6.3 | User=sch-admin
+http://school73.ru/ # Joomla! 1.0.0 RE
+http://school79.ru/ # wp, with path disclosure, authentificated rce | User=sch-admin
+http://school63.ru/ # wp | User=admin
+https://school86.ru/ # wp 5.8.9 | User=admin,roman,tatyana,katerina74
+https://school87.ru/ # wp 6.4.4 | User=school87
+!!! http://school108.ru/ 
+http://school120.ru/ # wp | No users
+http://school132.ru/ # wp 6.5.4 | User=vilmand5,zulfiya_k
+!!! http://school11.ru/ # already pwned by smbd
+!!! https://www.school139.ru/ # wp | User=school-139 (can be bruted)
+!!! https://school145.ru/ # wp 6.4.2 | User=admin , (can be bruted)
+!! https://school156.ru # defaced path "/home/u10878/school156.ru/docs/templates/protostar/index.php", joomla 3.8.0
+! https://school165.ru/ # defaced/pwned of kraken advirtisment
+http://school172.ru/ # wp 6.5.4 | User=ktus,dministrator
+http://school175.ru/ # wp 5.8.9 | User=superadmin
+http://school178.ru/ # wp 5.6 | User=school_178 (check for vuln)
+http://school193.ru # wp 6.5.4 | User=dumpty,Dumpty,andreistasialovich,bystryi,zannadev,master,artjomshmakov,ya-seo-guru (check for vuln)
+! https://school215.ru
+http://school336.ru/ 
+!!! http://school382.ru/ # joomla! 4.2.2, vulnerable to msfconsole (db_name=db_user=springmeru_joop1, db_password=fJXifTHP86^1K6wh)
+
