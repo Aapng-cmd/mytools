@@ -1,7 +1,7 @@
 import subprocess
 
 def run_joomscan(url, options=None):
-    command = ["/home/kali/tmp/joomlavs/joomlavs.rb", "-u", url]
+    command = ["/opt/joomlavs/joomlavs.rb", "-u", url]
     if options:
         command.extend(options)
     
