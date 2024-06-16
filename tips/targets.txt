@@ -18,7 +18,7 @@ http://school73.ru/ # Joomla! 1.0.0 RE
 http://school79.ru/ # wp, with path disclosure, authentificated rce | User=sch-admin
 http://school63.ru/ # wp | User=admin
 https://school86.ru/ # wp 5.8.9 | User=admin,roman,tatyana,katerina74
-https://school87.ru/ # wp 6.4.4 | User=school87
+https://school87.ru/ # wp 6.4.4 | User=school87 (can be bruted)
 !!! http://school108.ru/ 
 http://school120.ru/ # wp | No users
 http://school132.ru/ # wp 6.5.4 | User=vilmand5,zulfiya_k
@@ -29,7 +29,7 @@ http://school132.ru/ # wp 6.5.4 | User=vilmand5,zulfiya_k
 ! https://school165.ru/ # defaced/pwned of kraken advirtisment
 http://school172.ru/ # wp 6.5.4 | User=ktus,dministrator
 http://school175.ru/ # wp 5.8.9 | User=superadmin
-http://school178.ru/ # wp 5.6 | User=school_178 (check for vuln)
+http://school178.ru/ # wp 5.6 | User=school_178
 http://school193.ru # wp 6.5.4 | User=dumpty,Dumpty,andreistasialovich,bystryi,zannadev,master,artjomshmakov,ya-seo-guru (check for vuln)
 ! https://school215.ru
 http://school336.ru/ 

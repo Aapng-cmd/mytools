@@ -35,7 +35,10 @@ def filter_links(links):
             exter.add(link)
         else:
             print(link)
-            inter.add(link) if len(link) != 0 and link[0] != "#" and link != "/" and link != "." else None
+            try:
+                inter.add(link) if len(link) != 0 and link[0] != "#" and link != "/" and link != "." and "data:image" not in link and "javascript:" not in link else None
+            except TypeError:
+                pass
     
     return ans
 
@@ -62,7 +65,7 @@ def dumping(links: list, url, directory="/home/kali/tmp/site", file_links=set())
         print(link, path, d_path)
         if len(d_path) != 1:
         
-            if ".js" in path[-1] or ".css" in path[-1] or re.findall(".*h*", path[-1])[1:]:
+            if ".js" in path[-1] or ".css" in path[-1] or re.findall(".*h*", path[-1])[1:] or ".png" in path[-1] or ".gif" in path[-1]:
                 file_links.add("/".join(path))
         
             for i in range(len(d_path)):

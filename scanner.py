@@ -1,7 +1,13 @@
 import requests, time
+import argparse
 
 
-with open("log.log", "w") as f:
+parser = argparse.ArgumentParser(description='Search ips from specific pattern')
+parser.add_argument('-f', '--file', type=str, help='log file to save', required=True)
+args = parser.parse_args()
+
+
+with open(args.file, "w") as f:
 	s = ""
 
 
