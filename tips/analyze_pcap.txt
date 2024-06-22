@@ -1,0 +1,8 @@
+# video
+
+videosnarf -i file.pcap
+
+ffmpeg -vcodec h264 -i H264-media-1.264 -vcodec copy -acodec copy out.ts
+ffmpeg -i out.ts -vcodec libx264 -crf 18 output.mp4
+
+Here you are: output.mp4
