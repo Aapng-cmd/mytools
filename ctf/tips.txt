@@ -1,0 +1,5 @@
+# work with big images
+stegseek image.jpg -t 1
+
+# for audio
+https://academo.org/demos/spectrum-analyzer/ # build spectrogramm

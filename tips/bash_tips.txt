@@ -1,0 +1,7 @@
+# printf
+
+printf -va[1$($command)]
+
+# delimiters
+';', '&&', '|' = another command
+'${IFS}' = " "
