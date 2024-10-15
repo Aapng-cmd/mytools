@@ -3,8 +3,8 @@ http://www.fml366.org # drupal
 ! https://sc261.ru # wp 6.5.3 | User=nilov,bychkov, Vuln=https://sc261.ru/wp-content/themes/showtime/scripts/timthumb.php?src= : RCE/LFI
 http://www.spbschool622.ru # joomla! 3.9.0
 ! http://new.gymn470.ru # wp 5.8.9 | User=admin,gordeeva
-http://school246.ru # joomla! 3.10.22
-https://525school.ru # joomla! 1.5.2
+http://school246.ru # joomla! 3.10.22 | nothing interesting fr
+!!! https://525school.ru # joomla! 1.5.2 | sql injection, retrieved db
 https://nwedu.ru # wp 6.5.3
 https://l126.ru/ # wp 6.4.4 | User=admin,leva,koltsova,ivanovvv
 !! http://school564.ru # livestreet | enabled register/login
@@ -32,5 +32,5 @@ http://school175.ru/ # wp 5.8.9 | User=superadmin
 http://school178.ru/ # wp 5.6 | User=school_178
 http://school193.ru # wp 6.5.4 | User=dumpty,Dumpty,andreistasialovich,bystryi,zannadev,master,artjomshmakov,ya-seo-guru (check for vuln)
 ! https://school215.ru
-http://school336.ru/ 
+http://school336.ru/
 !!! http://school382.ru/ # joomla! 4.2.2, vulnerable to msfconsole (db_name=db_user=springmeru_joop1, db_password=fJXifTHP86^1K6wh)

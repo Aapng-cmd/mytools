@@ -1,10 +1,19 @@
+#!/usr/bin/env python3
+
 import subprocess
+import argparse
+
+parser = argparse.ArgumentParser(description='Work with sites, which were got from scanner.py')
+parser.add_argument('-f', '--file', type=str, help='log file from read', required=True)
+args = parser.parse_args()
+
+
 
 def run_joomscan(url, options=None):
-    command = ["/opt/joomlavs/joomlavs.rb", "-u", url]
+    command = ["/root/joomlavs/joomlavs.rb", "-u", url]
     if options:
         command.extend(options)
-    
+
     output = subprocess.check_output(command).decode()
     return output
 
@@ -14,11 +23,14 @@ def wtf(fn, string):
         f.write(string + "\n")
 
 
-with open("hosts", "r") as f:
-    hosts = f.read().split("\n")[:-1]
+with open(args.file, "r") as f:
+    hosts = []
+    for el in f.read().split("\n")[:-1]:
+        if "Check this out" in el:
+            hosts.append(el.split()[1])
 
 for host in hosts:
-    print(host)
+    # print(host, "host")
     output = run_joomscan(host, ["-q", "--hide-banner", '--no-colour', '--follow-redirection'])
     if "Joomla" not in output:
         continue
@@ -34,7 +46,7 @@ for host in hosts:
 
 # let's go further
 
-with open ("vuln.hosts", "r") as f:
+with open ('vuln.hosts', "r") as f:
     data = f.read().split("\n")[:-1]
 
 d = []
@@ -46,7 +58,7 @@ for el in data:
         if ver[0] == "v": ver = ver[1:]
         _[ip] = ver
         d.append([ip, ver])
-        
+
 
 d = sorted(d, key=lambda x: x[1])
 
