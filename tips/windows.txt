@@ -6,6 +6,7 @@
 
 OR
 
+(ifnot cme, then nxc)
 2. crackmapexec
 2.1 crackmapexec smb {IP} -u anonymous -p '' --rid-brute 10000
 2.2 crackmapexec smb {IP} -u {user_file_list} -p {password_file_list}

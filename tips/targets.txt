@@ -34,3 +34,4 @@ http://school193.ru # wp 6.5.4 | User=dumpty,Dumpty,andreistasialovich,bystryi,z
 ! https://school215.ru
 http://school336.ru/
 !!! http://school382.ru/ # joomla! 4.2.2, vulnerable to msfconsole (db_name=db_user=springmeru_joop1, db_password=fJXifTHP86^1K6wh)
+!!! https://pacman.work.gd/login.php # SQLi, need more checks, wtf is this? | admin:123456 and via simple sqli | server user is "pacman"
