@@ -35,3 +35,7 @@ http://school193.ru # wp 6.5.4 | User=dumpty,Dumpty,andreistasialovich,bystryi,z
 http://school336.ru/
 !!! http://school382.ru/ # joomla! 4.2.2, vulnerable to msfconsole (db_name=db_user=springmeru_joop1, db_password=fJXifTHP86^1K6wh)
 !!! https://pacman.work.gd/login.php # SQLi, need more checks, wtf is this? | admin:123456 and via simple sqli | server user is "pacman"
+!! https://b71ca49f.advert.biz.id/ # sqlite error with strange php serialize
+!!! 177.53.215.134 # very interesting site, which is already hacked
+! 103.163.215.12 # strange things with dbs and 80,443 ports
+https://gramofer.work.gd # just interesting site woth jwt/aes token auth and strange work with files and db

