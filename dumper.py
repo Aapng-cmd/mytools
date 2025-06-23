@@ -14,7 +14,7 @@ def is_file(url):
 
 import re
 
-def extract_links(page):
+def search_links(page):
     """
     Extracts links from a given webpage.
 

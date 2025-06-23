@@ -39,3 +39,7 @@ http://school336.ru/
 !!! 177.53.215.134 # very interesting site, which is already hacked
 ! 103.163.215.12 # strange things with dbs and 80,443 ports
 https://gramofer.work.gd # just interesting site woth jwt/aes token auth and strange work with files and db
+
+!!! http://www.demo.toplogic.in # misconfig + sqli
+!!! http://beta.app.internship.codeclause.com # sqli
+

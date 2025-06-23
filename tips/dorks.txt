@@ -1,0 +1,4 @@
+#find misconfigs
+intext:"index of" "phpinfo" site:*.in
+#mysql misconfig
+intitle:"index of" mysql inurl:./db/
