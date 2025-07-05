@@ -48,3 +48,5 @@ https://gramofer.work.gd # just interesting site woth jwt/aes token auth and str
 !! http://test.sulama.de/ # misconfig + code
 !! http://test.sulama.de/ # misconfig + ability to rce, if only we could log in
 ! https://mail.campaignpros.com.au/ # misconfig + code
+! https://anaxusdemo.com.au/ # misconfig with large backups
+! https://dev.bartosz.com.au/ # misconfig? + code + wp
