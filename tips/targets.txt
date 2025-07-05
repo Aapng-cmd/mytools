@@ -42,4 +42,9 @@ https://gramofer.work.gd # just interesting site woth jwt/aes token auth and str
 
 !!! http://www.demo.toplogic.in # misconfig + sqli
 !!! http://beta.app.internship.codeclause.com # sqli
-
+!! http://www.cestananovyzeland.cz # sqli
+! https://ns2.ecitmap.com.tw/ # hacked storage
+! https://www.imn.htwk-leipzig.de/~mueller/ # misconfig
+!! http://test.sulama.de/ # misconfig + code
+!! http://test.sulama.de/ # misconfig + ability to rce, if only we could log in
+! https://mail.campaignpros.com.au/ # misconfig + code
